@@ -4,13 +4,83 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Coliseum RPG</title>
+    <title>Colosseum RPG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="game.js"></script>
+    <!-- Bootstrap 4.0 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- App specific CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
+    <!-- adding JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Game logic -->
+    <script src="assets/javascript/game.js"></script>
 </head>
 
 <body>
+
+
+    <!-- Main body of the site -->
+    <div class="jumbotron">
+        <!-- Title -->
+        <h1 class="display-4 text-center">Colosseum</h1>
+        <!-- Subtitle -->
+        <p class="lead gallows text-center">Fight to the roar of the crowd</p>
+
+        <!-- Horizontial line to break up page -->
+        <hr class="my-4">
+
+        <!-- Start of first row -->
+        <div class="row">
+            <!-- First column: Labels -->
+            <div class="col-md-5 text-right" id="playerSlot">
+                <h1> Player here</h1>
+            </div>
+            <div class="col-md-2 text-center" id="attackSlot">
+                <button type="button" class="btn btn-danger" id="attackBtn">Attack!</button>
+            </div>
+            <!-- Second column: Data -->
+            <div class="col-md-5" id="enemySlot">
+                <h1> Enemy Here</h1>
+            </div>
+        </div>
+        <!-- First row ends -->
+
+        <!-- Horizontial line to break up page -->
+        <hr class="my-4">
+
+        <!-- Start of second row -->
+        <div class="row">
+            <!-- Set the column to 12 units wide (screen width) -->
+            <div class="col-md-12">
+                <!-- center the text -->
+                <p class="text-center">
+                    <!-- Status text box  -->
+                    <span id="statusText"></span>
+                </p>
+
+                <!-- Horizontial line to break up page -->
+                <hr class="my-4">
+
+
+                <div id="fighterPit" class="text-center">
+                    <!-- center the text -->
+                    <p class="text-center">
+                        <button type="button" class="btn btn-secondary" id="spartacusDiv">Spartacus</button>
+                        <button type="button" class="btn btn-secondary" id="varroDiv">Varro</button>
+                        <button type="button" class="btn btn-secondary" id="ashurDiv">Ashur</button>
+                        <button type="button" class="btn btn-secondary" id="crixusDiv">Crixus</button>
+                        <button type="button" class="btn btn-secondary" id="gannicusDiv">Gannicus</button>
+                        <button type="button" class="btn btn-secondary" id="oenomausDiv">Oenomaus</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- second row ends -->
+
+    </div>
+
 
 </body>
 
