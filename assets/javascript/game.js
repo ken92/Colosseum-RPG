@@ -72,8 +72,10 @@ var statusText = "",
   fighterPit = $("#fighterPit"),
   player,
   enemy,
+  opponentsLeft,
   statusText = $("#statusText");
 
+// Reset / Default state function
 function reset() {
   Spartacus = {
     name: "Spartacus",
@@ -158,11 +160,14 @@ function reset() {
   Gannicus.divID.css("display", "inline");
   Oenomaus.divID.css("display", "inline");
 
+  // Reset conditional varialbes
   playerPicked = false;
   combat = false;
   player = null;
   enemy = null;
+  opponentsLeft = 5;
 
+  // Default text and styling
   statusText.css("color", "black");
   statusText.css("font-weight", "bold");
   statusText.css("font-size", "1.5em");
@@ -239,9 +244,10 @@ function loss() {
 }
 
 // Win sequence
-// Add this
-// Needs a variable to cound enemies left
-// deincriment by 1 for each victory
+function win() {
+  alert("You have won your freedom, paid in blood.");
+  reset();
+}
 
 // HP Bar Function
 function HPBarUpdate(glad) {
@@ -443,6 +449,7 @@ $(window).on("load", function() {
     console.log("Combat has started"); // REMOVE AFTER TESTING //
     console.log("Enemy HP: " + enemy.HP);
     console.log("Player HP: " + player.HP);
+    console.log("Opponents Left: " + opponentsLeft);
 
     if (playerPicked === false) {
       // Checks to see if player has selected their champion
@@ -473,15 +480,20 @@ $(window).on("load", function() {
           player.HP -= enemy.CA;
           console.log("Player HP: " + player.HP + " - after enemy attack");
           // Update player HP bar
-          HPBarUpdate(player); // FIGURE OUT WHY THIS BRINGS HP BAR TO 0 WHEN ENEMY DIES
+          HPBarUpdate(player);
           if (player.HP <= 0) {
             // If enemy's attack brings player to 0, player loses
             loss(); // Lose condition
           }
         } else {
-          // Enemy defeated, remove them from the board and reset combat status
-          combat = false;
-          enemy.divID.css("display", "none");
+          if (opponentsLeft === 0) {
+            win();
+          } else {
+            // Enemy defeated, remove them from the board and reset combat status
+            combat = false;
+            opponentsLeft--;
+            enemy.divID.css("display", "none");
+          }
         }
       }
     }
