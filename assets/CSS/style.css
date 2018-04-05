@@ -19,6 +19,10 @@ body {
   background-color: #233944;
 }
 
+.statusWindow {
+  background: rgba(255, 255, 255, 0.507);
+}
+
 /* Main body of the game is wrapped in this jumbotron */
 .jumbotron {
   background-color: #233944;
