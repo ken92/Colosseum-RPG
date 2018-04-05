@@ -82,6 +82,10 @@ var statusText = "",
   opponentsLeft,
   statusText = $("#statusText");
 
+// Audio
+var soundMusic = document.createElement("audio");
+soundMusic.setAttribute("src", "./assets/audio/music.mp3");
+
 // Reset / Default state function
 function reset() {
   Spartacus = {
@@ -165,6 +169,32 @@ function reset() {
   HPBarUpdate(Gannicus);
   HPBarUpdate(Oenomaus);
 
+  // Default animation
+  Spartacus.charID.attr(
+    "src",
+    "assets/images/" + Spartacus.name.toLowerCase() + "_idle.gif"
+  );
+  Varro.charID.attr(
+    "src",
+    "assets/images/" + Varro.name.toLowerCase() + "_idle.gif"
+  );
+  Ashur.charID.attr(
+    "src",
+    "assets/images/" + Ashur.name.toLowerCase() + "_idle.gif"
+  );
+  Crixus.charID.attr(
+    "src",
+    "assets/images/" + Crixus.name.toLowerCase() + "_idle.gif"
+  );
+  Gannicus.charID.attr(
+    "src",
+    "assets/images/" + Gannicus.name.toLowerCase() + "_idle.gif"
+  );
+  Oenomaus.charID.attr(
+    "src",
+    "assets/images/" + Oenomaus.name.toLowerCase() + "_idle.gif"
+  );
+
   // Resets the visibility of the gladiator pool
   Spartacus.divID.css("display", "inline");
   Varro.divID.css("display", "inline");
@@ -215,7 +245,6 @@ function btnClick(gladiator) {
       // If no player is picked, selects the player
       gladiator.status = "player"; // sets gladiator status to player
       player = gladiator;
-      // Change the border color to green
       // Gets player to move
       $(gladiator.divID).appendTo($("#playerSlot")); // Moves the selected character to the player slot
       console.log(gladiator);
@@ -321,8 +350,9 @@ $(window).on("load", function() {
   // Mouseover stats
   function mouseoverStats() {
     // Spartacus
-    $("#spartacusPopover").hover(
+    Spartacus.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/spartacus_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -340,13 +370,15 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/spartacus_idle.gif");
         $(this).popover("hide");
       }
     );
 
     // Varro
-    $("#varroPopover").hover(
+    Varro.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/varro_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -364,13 +396,15 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/varro_idle.gif");
         $(this).popover("hide");
       }
     );
 
     // Ashur
-    $("#ashurPopover").hover(
+    Ashur.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/ashur_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -388,13 +422,15 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/ashur_idle.gif");
         $(this).popover("hide");
       }
     );
 
     // Crixus
-    $("#crixusPopover").hover(
+    Crixus.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/crixus_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -412,13 +448,15 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/crixus_idle.gif");
         $(this).popover("hide");
       }
     );
 
     // Gannicus
-    $("#gannicusPopover").hover(
+    Gannicus.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/gannicus_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -436,13 +474,15 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/gannicus_idle.gif");
         $(this).popover("hide");
       }
     );
 
     // Oenomaus
-    $("#oenomausPopover").hover(
+    Oenomaus.charID.hover(
       function() {
+        $(this).attr("src", "assets/images/oenomaus_run.gif");
         $(this)
           .popover({
             trigger: "hover",
@@ -460,6 +500,7 @@ $(window).on("load", function() {
           .popover("show");
       },
       function() {
+        $(this).attr("src", "assets/images/oenomaus_idle.gif");
         $(this).popover("hide");
       }
     );
@@ -527,6 +568,36 @@ $(window).on("load", function() {
     } else {
       // If player and enemy are selected, fight!
       if (combat === true && player != null && enemy != null) {
+        // ANIMATIONS
+        // Set attack animation of player
+        setTimeout(function() {
+          $(player.charID).attr(
+            "src",
+            "assets/images/" + player.name.toLowerCase() + "_attack.gif"
+          );
+          console.log("player attack");
+          // Set hurt animation of enemy
+          setTimeout(function() {
+            $(enemy.charID).attr(
+              "src",
+              "assets/images/" + enemy.name.toLowerCase() + "_hurt.gif"
+            );
+            console.log("enemy hurt");
+            setTimeout(function() {
+              // Restore idle animations
+              $(player.charID).attr(
+                "src",
+                "assets/images/" + player.name.toLowerCase() + "_idle.gif"
+              );
+              $(enemy.charID).attr(
+                "src",
+                "assets/images/" + enemy.name.toLowerCase() + "_idle.gif"
+              );
+              console.log("reset animations");
+            }, 500);
+          }, 500);
+        }, 500);
+
         // Player damages enemy
         enemy.HP -= player.AP + player.AP * player.EXP;
         // Player gains EXP for each attack
@@ -535,6 +606,39 @@ $(window).on("load", function() {
         HPBarUpdate(enemy);
         console.log("Enemy HP: " + enemy.HP + " - after player attack");
         if (enemy.HP > 0) {
+          // ANIMATIONS
+          // Gives the first round of attacks time to cycle
+          setTimeout(function() {
+            // Set attack animation of enemy
+            setTimeout(function() {
+              $(enemy.charID).attr(
+                "src",
+                "assets/images/" + enemy.name.toLowerCase() + "_attack.gif"
+              );
+              console.log("enemy attack");
+              // Set hurt animation of player
+              setTimeout(function() {
+                $(player.charID).attr(
+                  "src",
+                  "assets/images/" + player.name.toLowerCase() + "_hurt.gif"
+                );
+                console.log("player hurt");
+                setTimeout(function() {
+                  // Restore idle animations
+                  $(player.charID).attr(
+                    "src",
+                    "assets/images/" + player.name.toLowerCase() + "_idle.gif"
+                  );
+                  $(enemy.charID).attr(
+                    "src",
+                    "assets/images/" + enemy.name.toLowerCase() + "_idle.gif"
+                  );
+                  console.log("reset animations");
+                }, 500);
+              }, 1000);
+            }, 1000);
+          }, 1000);
+
           // Enemy can only damage player if they are not dead
           player.HP -= enemy.CA;
           console.log("Player HP: " + player.HP + " - after enemy attack");
@@ -542,7 +646,21 @@ $(window).on("load", function() {
           HPBarUpdate(player);
           if (player.HP <= 0) {
             // If enemy's attack brings player to 0, player loses
-            loss(); // Lose condition
+            // ANIMATIONS
+            setTimeout(function() {
+              // Set attack animation of enemy
+              setTimeout(function() {
+                $(player.charID).attr(
+                  "src",
+                  "assets/images/" + player.name.toLowerCase() + "_die.gif"
+                );
+
+                setTimeout(function() {
+                  // Player loses
+                  loss();
+                }, 1500);
+              }, 5000);
+            }, 500);
           }
         } else {
           if (opponentsLeft === 0) {
@@ -551,8 +669,32 @@ $(window).on("load", function() {
             // Enemy defeated, remove them from the board and reset combat status
             combat = false;
             opponentsLeft--;
-            enemy.divID.css("display", "none");
             $("#attackSlot").css("visibility", "hidden");
+
+            // ANIMATION
+            // Gives the first round of attacks time to cycle
+            setTimeout(function() {
+              // Set death animation of enemy
+              setTimeout(function() {
+                $(enemy.charID).attr(
+                  "src",
+                  "assets/images/" + enemy.name.toLowerCase() + "_die.gif"
+                );
+                console.log("enemy die");
+                // Remove enemy from screen
+                setTimeout(function() {
+                  enemy.divID.css("display", "none");
+                  statusText.css("color", "black"); // Warning text color
+                  statusText.css("font-weight", "bold");
+                  statusText.css("font-size", "1.5em");
+                  statusText.text(
+                    "You defeated " +
+                      enemy.name +
+                      "! Select your next opponent."
+                  ); // Warning text
+                }, 3000);
+              }, 1000);
+            }, 1000);
           }
         }
       }
@@ -561,5 +703,6 @@ $(window).on("load", function() {
 
   // Function Calls
   reset();
+  soundMusic.play();
   mouseoverStats();
 });

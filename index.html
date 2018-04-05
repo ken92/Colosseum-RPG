@@ -43,7 +43,7 @@
         <!-- Title -->
         <h1 class="display-4 text-center">Colosseum</h1>
         <!-- Subtitle -->
-        <h3 class="lead gallows text-center">Fight to the roar of the crowd</h3>
+        <h3 class="lead text-center">Fight to the roar of the crowd</h3>
 
         <!-- Horizontial line to break up page -->
         <hr class="my-4">
@@ -52,19 +52,14 @@
         <div class="row">
 
             <!-- Player Slot -->
-            <div class="col-md-5 text-right" id="playerSlot">
+            <div class="col-md-6 text-right" id="playerSlot">
 
             </div>
 
-            <!-- Attack button -->
-            <div class="col-md-2 text-center" id="attackSlot">
-                <button type="button" class="btn btn-danger" id="attackBtn">
-                    <img src="assets/images/attack.png" class="figure-img img-fluid rounded" alt="Attack">
-                </button>
-            </div>
+
 
             <!-- Enemy Slot -->
-            <div class="col-md-5" id="enemySlot">
+            <div class="col-md-6" id="enemySlot">
 
             </div>
         </div>
@@ -72,6 +67,17 @@
 
         <!-- Horizontial line to break up page -->
         <hr class="my-4">
+
+        <div class="row">
+
+            <!-- Attack button -->
+            <div class="col-md-12 text-center" id="attackSlot">
+                <button type="button" class="btn btn-danger" id="attackBtn">
+                    <img src="assets/images/attack.png" class="figure-img img-fluid rounded" alt="Attack">
+                </button>
+            </div>
+
+        </div>
 
         <!-- Start of second row -->
         <div class="row">
@@ -118,7 +124,7 @@
 
                         <!-- Fighter portrait -->
                         <figure class="figure">
-                            <img src="assets/images/Varro.png" id="varroPopover" alt="Varro">
+                            <img src="assets/images/varro_idle.gif" id="varroPopover" alt="Varro">
                             <figcaption class="figure-caption text-center">
 
                                 <!-- Health bar -->
@@ -138,7 +144,7 @@
 
                         <!-- Fighter portrait -->
                         <figure class="figure">
-                            <img src="assets/images/Ashur.png" id="ashurPopover" alt="Ashur">
+                            <img src="assets/images/ashur_idle.gif" id="ashurPopover" alt="Ashur">
                             <figcaption class="figure-caption text-center">
 
                                 <!-- Health bar -->
@@ -158,7 +164,7 @@
 
                         <!-- Fighter portrait -->
                         <figure class="figure">
-                            <img src="assets/images/Crixus.png" id="crixusPopover" alt="Crixus">
+                            <img src="assets/images/crixus_idle.gif" id="crixusPopover" alt="Crixus">
                             <figcaption class="figure-caption text-center">
 
                                 <!-- Health bar -->
@@ -178,7 +184,7 @@
 
                         <!-- Fighter portrait -->
                         <figure class="figure">
-                            <img src="assets/images/Gannicus.png" id="gannicusPopover" alt="Gannicus">
+                            <img src="assets/images/gannicus_idle.gif" id="gannicusPopover" alt="Gannicus">
                             <figcaption class="figure-caption text-center">
 
                                 <!-- Health bar -->
@@ -198,7 +204,7 @@
 
                         <!-- Fighter portrait -->
                         <figure class="figure">
-                            <img src="assets/images/Oenomaus.png" id="oenomausPopover" alt="Oenomaus">
+                            <img src="assets/images/oenomaus_idle.gif" id="oenomausPopover" alt="Oenomaus">
                             <figcaption class="figure-caption text-center">
 
                                 <!-- Health bar -->
@@ -217,20 +223,21 @@
             <!-- second row ends -->
 
         </div>
+    </div>
 
 
-        <!-- JQuery -->
-        <script src="assets/javascript/jquery.js"></script>
+    <!-- JQuery -->
+    <script src="assets/javascript/jquery.js"></script>
 
-        <!-- popper CDN for mouseover stats -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+    <!-- popper CDN for mouseover stats -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 
-        <!-- Bootstrap bundle (includes JS files) -->
-        <script src="assets/javascript/bootstrap.bundle.js"></script>
+    <!-- Bootstrap bundle (includes JS files) -->
+    <script src="assets/javascript/bootstrap.bundle.js"></script>
 
-        <!-- Game logic -->
-        <script src="assets/javascript/game.js"></script>
+    <!-- Game logic -->
+    <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>
