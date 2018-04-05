@@ -1,3 +1,19 @@
+/* Sets the animation for the special attack button */
+@-webkit-keyframes greenPulse {
+  from {
+    background-color: #749a02;
+    -webkit-box-shadow: 0 0 9px #333;
+  }
+  50% {
+    background-color: #91bd09;
+    -webkit-box-shadow: 0 0 18px #91bd09;
+  }
+  to {
+    background-color: #749a02;
+    -webkit-box-shadow: 0 0 9px #333;
+  }
+}
+
 /* Makes the outter edges match with the image */
 body {
   background-color: #233944;
@@ -16,6 +32,18 @@ body {
 /* Hides the attack button until combat starts */
 #attackSlot {
   visibility: hidden;
+}
+
+/* Hides the special attack button until combat starts */
+#specialSlot {
+  visibility: hidden;
+}
+
+/* Special attack button, hidden on start and animated */
+#specialBtn {
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
 }
 
 /* Health bar empty */
@@ -56,6 +84,7 @@ body {
   background-color: green;
 }
 
+/* Faces the character in the correct direction */
 #spartacusPopover {
   -moz-transform: scaleX(1);
   -o-transform: scaleX(1);
@@ -65,6 +94,7 @@ body {
   -ms-filter: "FlipH";
 }
 
+/* Faces the character in the correct direction */
 #varroPopover {
   -moz-transform: scaleX(1);
   -o-transform: scaleX(1);
@@ -74,6 +104,7 @@ body {
   -ms-filter: "FlipH";
 }
 
+/* Faces the character in the correct direction */
 #ashurPopover {
   -moz-transform: scaleX(1);
   -o-transform: scaleX(1);
@@ -83,6 +114,7 @@ body {
   -ms-filter: "FlipH";
 }
 
+/* Faces the character in the correct direction */
 #crixusPopover {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -92,6 +124,7 @@ body {
   -ms-filter: "FlipH";
 }
 
+/* Faces the character in the correct direction */
 #gannicusPopover {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -101,6 +134,7 @@ body {
   -ms-filter: "FlipH";
 }
 
+/* Faces the character in the correct direction */
 #oenomausPopover {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);

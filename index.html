@@ -51,17 +51,15 @@
         <!-- Start of first row -->
         <div class="row">
 
-            <!-- Player Slot -->
-            <div class="col-md-6 text-right" id="playerSlot">
-
+            <div class="col-md-6 text-right col-md-offset-5">
+                <!-- Player Slot -->
+                <div id="playerSlot"></div>
+            </div>
+            <div class="col-md-6 col-md-offset-5">
+                <!-- Enemy slot -->
+                <div id="enemySlot"></div>
             </div>
 
-
-
-            <!-- Enemy Slot -->
-            <div class="col-md-6" id="enemySlot">
-
-            </div>
         </div>
         <!-- First row ends -->
 
@@ -70,8 +68,15 @@
 
         <div class="row">
 
+            <!-- Special Attack button -->
+            <div class="col-md-6 text-right" id="specialSlot">
+                <button type="button" class="btn btn-success" id="specialBtn">
+                    <img src="assets/images/special_attack.png" class="figure-img img-fluid rounded" alt="Special Attack">
+                </button>
+            </div>
+
             <!-- Attack button -->
-            <div class="col-md-12 text-center" id="attackSlot">
+            <div class="col-md-6" id="attackSlot">
                 <button type="button" class="btn btn-danger" id="attackBtn">
                     <img src="assets/images/attack.png" class="figure-img img-fluid rounded" alt="Attack">
                 </button>
