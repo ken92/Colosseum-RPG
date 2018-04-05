@@ -2,6 +2,7 @@
 var Spartacus = {
     name: "Spartacus",
     divID: $("#spartacusDiv"),
+    charID: $("#spartacusPopover"),
     hpID: $("#spartacusHealth"),
     maxHP: 180,
     HP: 180,
@@ -13,6 +14,7 @@ var Spartacus = {
   Varro = {
     name: "Varro",
     divID: $("#varroDiv"),
+    charID: $("#varroPopover"),
     hpID: $("#varroHealth"),
     maxHP: 160,
     HP: 160,
@@ -24,6 +26,7 @@ var Spartacus = {
   Ashur = {
     name: "Ashur",
     divID: $("#ashurDiv"),
+    charID: $("#ashurPopover"),
     hpID: $("#ashurHealth"),
     maxHP: 110,
     HP: 110,
@@ -35,6 +38,7 @@ var Spartacus = {
   Crixus = {
     name: "Crixus",
     divID: $("#crixusDiv"),
+    charID: $("#crixusPopover"),
     hpID: $("#crixusHealth"),
     maxHP: 200,
     HP: 200,
@@ -46,6 +50,7 @@ var Spartacus = {
   Gannicus = {
     name: "Gannicus",
     divID: $("#gannicusDiv"),
+    charID: $("#gannicusPopover"),
     hpID: $("#gannicusHealth"),
     maxHP: 175,
     HP: 175,
@@ -57,6 +62,7 @@ var Spartacus = {
   Oenomaus = {
     name: "Oenomaus",
     divID: $("#oenomausDiv"),
+    charID: $("#oenomausPopover"),
     hpID: $("#oenomausHealth"),
     maxHP: 150,
     HP: 150,
@@ -66,6 +72,7 @@ var Spartacus = {
     status: "unassigned"
   };
 
+// Conditionals
 var statusText = "",
   playerPicked = false,
   combat = false,
@@ -80,6 +87,7 @@ function reset() {
   Spartacus = {
     name: "Spartacus",
     divID: $("#spartacusDiv"),
+    charID: $("#spartacusPopover"),
     hpID: $("#spartacusHealth"),
     maxHP: 180,
     HP: 180,
@@ -91,6 +99,7 @@ function reset() {
   Varro = {
     name: "Varro",
     divID: $("#varroDiv"),
+    charID: $("#varroPopover"),
     hpID: $("#varroHealth"),
     maxHP: 160,
     HP: 160,
@@ -102,6 +111,7 @@ function reset() {
   Ashur = {
     name: "Ashur",
     divID: $("#ashurDiv"),
+    charID: $("#ashurPopover"),
     hpID: $("#ashurHealth"),
     maxHP: 110,
     HP: 110,
@@ -113,6 +123,7 @@ function reset() {
   Crixus = {
     name: "Crixus",
     divID: $("#crixusDiv"),
+    charID: $("#crixusPopover"),
     hpID: $("#crixusHealth"),
     maxHP: 200,
     HP: 200,
@@ -124,6 +135,7 @@ function reset() {
   Gannicus = {
     name: "Gannicus",
     divID: $("#gannicusDiv"),
+    charID: $("#gannicusPopover"),
     hpID: $("#gannicusHealth"),
     maxHP: 175,
     HP: 175,
@@ -135,6 +147,7 @@ function reset() {
   Oenomaus = {
     name: "Oenomaus",
     divID: $("#oenomausDiv"),
+    charID: $("#oenomausPopover"),
     hpID: $("#oenomausHealth"),
     maxHP: 150,
     HP: 150,
@@ -159,6 +172,7 @@ function reset() {
   Crixus.divID.css("display", "inline");
   Gannicus.divID.css("display", "inline");
   Oenomaus.divID.css("display", "inline");
+  $("#attackSlot").css("visibility", "hidden");
 
   // Reset conditional varialbes
   playerPicked = false;
@@ -213,6 +227,7 @@ function btnClick(gladiator) {
           " has been picked to honor you in the arena, choose your opponent."
       ); // Tells the user which gladiator they picked and prompts them to make an opponent selection
       playerPicked = true;
+      aboutFace(gladiator);
     } else if (playerPicked === true && combat === false) {
       gladiator.status = "enemy"; // sets this gladiator to enemey
       enemy = gladiator;
@@ -224,7 +239,9 @@ function btnClick(gladiator) {
         gladiator.name +
           " has been chosen as your opponent, click the attack button to fight."
       ); // Tells the user which gladiator they picked and prompts them to make an opponent selection
+      $("#attackSlot").css("visibility", "visible");
       combat = true;
+      aboutFace(gladiator);
     } else {
       statusText.css("color", "red"); // Resets the status text color
       statusText.css("font-weight", "bold");
@@ -249,163 +266,204 @@ function win() {
   reset();
 }
 
+// Character facing
+function aboutFace(char) {
+  if (char.status === "player") {
+    char.charID.css({
+      "-moz-transform": "scaleX(1)",
+      "-o-transform": "scaleX(1)",
+      "-webkit-transform": "scaleX(1)",
+      transform: "scaleX(1)",
+      filter: '"FlipH"',
+      "-ms-filter": '\'"FlipH"'
+    });
+  } else {
+    char.charID.css({
+      "-moz-transform": "scaleX(-1)",
+      "-o-transform": "scaleX(-1)",
+      "-webkit-transform": "scaleX(-1)",
+      transform: "scaleX(-1)",
+      filter: '"FlipH"',
+      "-ms-filter": '\'"FlipH"'
+    });
+  }
+}
+
 // HP Bar Function
 function HPBarUpdate(glad) {
   // hp / max hp * 100 = %
   let mh = glad.HP / glad.maxHP * 100;
   glad.hpID.css("width", mh + "%");
+  // Add health text
+  glad.hpID.text("HP " + glad.HP);
+
+  console.log("Health %: " + mh);
+  // Turn HP bar red on low HP
+  if (mh <= 50) {
+    glad.hpID.css("background-color", "red");
+  } else {
+    glad.hpID.css("background-color", "green");
+  }
 }
 
 // Waits until document is ready and runs functions
 $(window).on("load", function() {
+  // Loads popovers (character stats on mouseover)
   $(function() {
     $('[data-toggle="popover"]').popover();
   });
 
+  // Intial lore window
+  $("#myModal").modal();
+
+  // Idle animation
+
   // Mouseover stats
-  // Spartacus
-  $("#spartacusPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Spartacus:",
-          content:
-            "Hit Points: " +
-            Spartacus.HP +
-            " <br /> Attack Power: " +
-            Spartacus.AP +
-            " <br /> Counter Attack: " +
-            Spartacus.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+  function mouseoverStats() {
+    // Spartacus
+    $("#spartacusPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Spartacus:",
+            content:
+              "Hit Points: " +
+              Spartacus.HP +
+              " <br /> Attack Power: " +
+              Spartacus.AP +
+              " <br /> Counter Attack: " +
+              Spartacus.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
 
-  // Varro
-  $("#varroPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Varro:",
-          content:
-            "Hit Points: " +
-            Varro.HP +
-            " <br /> Attack Power: " +
-            Varro.AP +
-            " <br /> Counter Attack: " +
-            Varro.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+    // Varro
+    $("#varroPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Varro:",
+            content:
+              "Hit Points: " +
+              Varro.HP +
+              " <br /> Attack Power: " +
+              Varro.AP +
+              " <br /> Counter Attack: " +
+              Varro.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
 
-  // Ashur
-  $("#ashurPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Ashur:",
-          content:
-            "Hit Points: " +
-            Ashur.HP +
-            " <br /> Attack Power: " +
-            Ashur.AP +
-            " <br /> Counter Attack: " +
-            Ashur.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+    // Ashur
+    $("#ashurPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Ashur:",
+            content:
+              "Hit Points: " +
+              Ashur.HP +
+              " <br /> Attack Power: " +
+              Ashur.AP +
+              " <br /> Counter Attack: " +
+              Ashur.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
 
-  // Crixus
-  $("#crixusPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Crixus:",
-          content:
-            "Hit Points: " +
-            Crixus.HP +
-            " <br /> Attack Power: " +
-            Crixus.AP +
-            " <br /> Counter Attack: " +
-            Crixus.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+    // Crixus
+    $("#crixusPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Crixus:",
+            content:
+              "Hit Points: " +
+              Crixus.HP +
+              " <br /> Attack Power: " +
+              Crixus.AP +
+              " <br /> Counter Attack: " +
+              Crixus.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
 
-  // Gannicus
-  $("#gannicusPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Gannicus:",
-          content:
-            "Hit Points: " +
-            Gannicus.HP +
-            " <br /> Attack Power: " +
-            Gannicus.AP +
-            " <br /> Counter Attack: " +
-            Gannicus.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+    // Gannicus
+    $("#gannicusPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Gannicus:",
+            content:
+              "Hit Points: " +
+              Gannicus.HP +
+              " <br /> Attack Power: " +
+              Gannicus.AP +
+              " <br /> Counter Attack: " +
+              Gannicus.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
 
-  // Oenomaus
-  $("#oenomausPopover").hover(
-    function() {
-      $(this)
-        .popover({
-          trigger: "hover",
-          placement: "top",
-          title: "Oenomaus:",
-          content:
-            "Hit Points: " +
-            Oenomaus.HP +
-            " <br /> Attack Power: " +
-            Oenomaus.AP +
-            " <br /> Counter Attack: " +
-            Oenomaus.CA,
-          html: true
-        })
-        .popover("show");
-    },
-    function() {
-      $(this).popover("hide");
-    }
-  );
+    // Oenomaus
+    $("#oenomausPopover").hover(
+      function() {
+        $(this)
+          .popover({
+            trigger: "hover",
+            placement: "top",
+            title: "Oenomaus:",
+            content:
+              "Hit Points: " +
+              Oenomaus.HP +
+              " <br /> Attack Power: " +
+              Oenomaus.AP +
+              " <br /> Counter Attack: " +
+              Oenomaus.CA,
+            html: true
+          })
+          .popover("show");
+      },
+      function() {
+        $(this).popover("hide");
+      }
+    );
+  }
 
   // On click functions
   // Spartacus
@@ -446,6 +504,7 @@ $(window).on("load", function() {
 
   // Attack button
   $("#attackBtn").click(function() {
+    mouseoverStats();
     console.log("Combat has started"); // REMOVE AFTER TESTING //
     console.log("Enemy HP: " + enemy.HP);
     console.log("Player HP: " + player.HP);
@@ -493,6 +552,7 @@ $(window).on("load", function() {
             combat = false;
             opponentsLeft--;
             enemy.divID.css("display", "none");
+            $("#attackSlot").css("visibility", "hidden");
           }
         }
       }
@@ -501,4 +561,5 @@ $(window).on("load", function() {
 
   // Function Calls
   reset();
+  mouseoverStats();
 });
