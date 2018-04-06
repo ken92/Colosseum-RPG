@@ -23,6 +23,10 @@ body {
   background: rgba(255, 255, 255, 0.507);
 }
 
+.quote {
+    font-style: italic;
+}
+
 /* Main body of the game is wrapped in this jumbotron */
 .jumbotron {
   background-color: #233944;
@@ -96,6 +100,8 @@ body {
   transform: scaleX(1);
   filter: "FlipH";
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
 
 /* Faces the character in the correct direction */
@@ -106,6 +112,8 @@ body {
   transform: scaleX(1);
   filter: "FlipH";
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
 
 /* Faces the character in the correct direction */
@@ -116,6 +124,8 @@ body {
   transform: scaleX(1);
   filter: "FlipH";
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
 
 /* Faces the character in the correct direction */
@@ -126,6 +136,8 @@ body {
   transform: scaleX(-1);
   filter: "FlipH";
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
 
 /* Faces the character in the correct direction */
@@ -136,6 +148,8 @@ body {
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
 
 /* Faces the character in the correct direction */
@@ -146,4 +160,6 @@ body {
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
+  height: 150px;
+  width: 150px;
 }
