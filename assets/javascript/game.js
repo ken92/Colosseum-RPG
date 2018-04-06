@@ -8,7 +8,7 @@ var Spartacus = {
     power: 5,
     maxHP: 500,
     HP: 500,
-    AP: 5,
+    AP: 4,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -20,10 +20,10 @@ var Spartacus = {
     hpID: $("#varroHealth"),
     special: true,
     power: 5,
-    maxHP: 500,
-    HP: 500,
+    maxHP: 450,
+    HP: 450,
     AP: 5,
-    CA: 20,
+    CA: 19,
     EXP: 0,
     status: "unassigned"
   },
@@ -34,9 +34,9 @@ var Spartacus = {
     hpID: $("#ashurHealth"),
     special: true,
     power: 5,
-    maxHP: 500,
-    HP: 500,
-    AP: 10,
+    maxHP: 550,
+    HP: 550,
+    AP: 3,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -50,7 +50,7 @@ var Spartacus = {
     power: 5,
     maxHP: 500,
     HP: 500,
-    AP: 10,
+    AP: 4,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -64,7 +64,7 @@ var Spartacus = {
     power: 5,
     maxHP: 500,
     HP: 500,
-    AP: 10,
+    AP: 4,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -78,7 +78,7 @@ var Spartacus = {
     power: 5,
     maxHP: 500,
     HP: 500,
-    AP: 10,
+    AP: 4,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -109,7 +109,7 @@ function reset() {
     power: 5,
     maxHP: 500,
     HP: 500,
-    AP: 5,
+    AP: 4,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -121,9 +121,9 @@ function reset() {
     hpID: $("#varroHealth"),
     special: true,
     power: 5,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
+    maxHP: 450,
+    HP: 450,
+    AP: 3,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -135,9 +135,9 @@ function reset() {
     hpID: $("#ashurHealth"),
     special: true,
     power: 5,
-    maxHP: 500,
-    HP: 500,
-    AP: 10,
+    maxHP: 550,
+    HP: 550,
+    AP: 3,
     CA: 20,
     EXP: 0,
     status: "unassigned"
@@ -255,13 +255,13 @@ function reset() {
 
 // Function to control when a gladiator is clicked
 function btnClick(gladiator) {
-  console.log(playerPicked);
-
   // Prevents player from clicking on an already selected champion
   if (gladiator === player) {
-    statusText.css("color", "red"); // Resets the status text color
-    statusText.css("font-weight", "bold");
-    statusText.css("font-size", "1.5em");
+    statusText.css({
+      color: "red",
+      "font-weight": "bold",
+      "font-size": "1.5em"
+    }); // Resets the status text color
     statusText.text(
       "You've already selected " +
         gladiator.name +
@@ -274,10 +274,11 @@ function btnClick(gladiator) {
       player = gladiator;
       // Gets player to move
       $(gladiator.divID).appendTo($("#playerSlot")); // Moves the selected character to the player slot
-      console.log(gladiator);
-      statusText.css("color", "black"); // Resets the status text color
-      statusText.css("font-weight", "bold");
-      statusText.css("font-size", "1.5em");
+      statusText.css({
+        color: "black",
+        "font-weight": "bold",
+        "font-size": "1.5em"
+      }); // Resets the status text color
       statusText.text(
         gladiator.name +
           " has been picked to honor you in the arena, choose your opponent."
@@ -310,7 +311,6 @@ function btnClick(gladiator) {
         "Your opponent is waiting for you to advance, click the attack button now."
       ); // Tells the user which gladiator they picked and prompts them to make an opponent selection
     }
-    console.log("click logic has run");
   }
 }
 
@@ -357,7 +357,6 @@ function HPBarUpdate(glad) {
   // Add health text
   glad.hpID.text("HP " + glad.HP);
 
-  console.log("Health %: " + mh);
   // Turn HP bar red on low HP
   if (mh <= 50) {
     glad.hpID.css("background-color", "red");
@@ -577,37 +576,31 @@ $(window).on("load", function() {
   // Spartacus
   Spartacus.divID.click(function() {
     btnClick(Spartacus);
-    console.log("Spartacus has been clicked");
   });
 
   // Varro
   Varro.divID.click(function() {
     btnClick(Varro);
-    console.log("Varro has been clicked");
   });
 
   // Ashur
   Ashur.divID.click(function() {
     btnClick(Ashur);
-    console.log("Ashur has been clicked");
   });
 
   // Crixus
   Crixus.divID.click(function() {
     btnClick(Crixus);
-    console.log("Crixus has been clicked");
   });
 
   // Gannicus
   Gannicus.divID.click(function() {
     btnClick(Gannicus);
-    console.log("Gannicus has been clicked");
   });
 
   // Oenomaus
   Oenomaus.divID.click(function() {
     btnClick(Oenomaus);
-    console.log("Oenomaus has been clicked");
   });
 
   // Attack button
@@ -682,10 +675,6 @@ $(window).on("load", function() {
 
         // Player damages enemy
         enemy.HP -= player.AP + player.AP * player.EXP;
-        // Player gains EXP for each attack
-        player.EXP++;
-        // Update enemy HP
-        HPBarUpdate(enemy);
         // Update status text
         statusText.css({
           color: "red",
@@ -699,6 +688,10 @@ $(window).on("load", function() {
             " for: " +
             (player.AP + player.AP * player.EXP)
         );
+        // Player gains EXP for each attack
+        player.EXP++;
+        // Update enemy HP
+        HPBarUpdate(enemy);
 
         if (enemy.HP > 0) {
           // Enemy can only damage player if they are not dead
@@ -855,7 +848,6 @@ $(window).on("load", function() {
     enemy.HP -= (player.AP + player.AP * player.EXP) * 2;
     // Update enemy HP
     HPBarUpdate(enemy);
-    console.log("Enemy HP: " + enemy.HP + " - after special attack");
     if (enemy.HP <= 0) {
       // Enemy defeated sequence
       opponentsLeft--; // Reduce number of opponents left.
