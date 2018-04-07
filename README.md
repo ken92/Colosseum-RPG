@@ -25,6 +25,11 @@ Download: https://goo.gl/wkJjcz
 License: [Creative Commons License](https://creativecommons.org/licenses/by/3.0/legalcode "Creative Commons License")
 ♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪
 
+### Game Balance Spreadsheet
+[Game Balance Spreadsheet](https://docs.google.com/spreadsheets/d/1-Caphlu_Mxsx4kS_o102vU14jjyL6lXlScilhgZTE3A/edit#gid=70611798)
+
 ### Credits
 
 This game was designed, developed and coded by Paul Laird for the UNH Coding Bootcamp 2018
+
+Game balance spreadsheet formulas, layout and design by Paul Laird with help from  Alison Moore on dynamic change forumlas.
