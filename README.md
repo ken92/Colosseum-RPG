@@ -24,3 +24,7 @@ Song Title: The Crossroads Of Change
 Download: https://goo.gl/wkJjcz
 License: [Creative Commons License](https://creativecommons.org/licenses/by/3.0/legalcode "Creative Commons License")
 ♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪♪
+
+### Credits
+
+This game was designed, developed and coded by Paul Laird for the UNH Coding Bootcamp 2018

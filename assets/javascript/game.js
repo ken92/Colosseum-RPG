@@ -8,8 +8,8 @@ var Spartacus = {
     power: 3,
     maxHP: 500,
     HP: 500,
-    AP: 5,
-    CA: 19,
+    AP: 4,
+    CA: 21,
     EXP: 0,
     status: "unassigned"
   },
@@ -20,9 +20,9 @@ var Spartacus = {
     hpID: $("#varroHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
+    maxHP: 550,
+    HP: 550,
+    AP: 3.5,
     CA: 19,
     EXP: 0,
     status: "unassigned"
@@ -34,10 +34,10 @@ var Spartacus = {
     hpID: $("#ashurHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 525,
+    HP: 525,
+    AP: 4,
+    CA: 20,
     EXP: 0,
     status: "unassigned"
   },
@@ -48,10 +48,10 @@ var Spartacus = {
     hpID: $("#crixusHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 475,
+    HP: 475,
+    AP: 4,
+    CA: 23,
     EXP: 0,
     status: "unassigned"
   },
@@ -62,10 +62,10 @@ var Spartacus = {
     hpID: $("#gannicusHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
+    maxHP: 400,
+    HP: 400,
     AP: 5,
-    CA: 19,
+    CA: 25,
     EXP: 0,
     status: "unassigned"
   },
@@ -76,10 +76,10 @@ var Spartacus = {
     hpID: $("#oenomausHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 600,
+    HP: 600,
+    AP: 3.5,
+    CA: 16,
     EXP: 0,
     status: "unassigned"
   };
@@ -109,8 +109,8 @@ function reset() {
     power: 3,
     maxHP: 500,
     HP: 500,
-    AP: 5,
-    CA: 19,
+    AP: 4,
+    CA: 21,
     EXP: 0,
     status: "unassigned"
   };
@@ -121,9 +121,9 @@ function reset() {
     hpID: $("#varroHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
+    maxHP: 550,
+    HP: 550,
+    AP: 3.5,
     CA: 19,
     EXP: 0,
     status: "unassigned"
@@ -135,10 +135,10 @@ function reset() {
     hpID: $("#ashurHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 525,
+    HP: 525,
+    AP: 4,
+    CA: 20,
     EXP: 0,
     status: "unassigned"
   };
@@ -149,10 +149,10 @@ function reset() {
     hpID: $("#crixusHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 475,
+    HP: 475,
+    AP: 4,
+    CA: 23,
     EXP: 0,
     status: "unassigned"
   };
@@ -163,10 +163,10 @@ function reset() {
     hpID: $("#gannicusHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
+    maxHP: 400,
+    HP: 400,
     AP: 5,
-    CA: 19,
+    CA: 25,
     EXP: 0,
     status: "unassigned"
   };
@@ -177,10 +177,10 @@ function reset() {
     hpID: $("#oenomausHealth"),
     special: false,
     power: 3,
-    maxHP: 500,
-    HP: 500,
-    AP: 5,
-    CA: 19,
+    maxHP: 600,
+    HP: 600,
+    AP: 3.5,
+    CA: 16,
     EXP: 0,
     status: "unassigned"
   };
@@ -544,7 +544,7 @@ $(window).on("load", function() {
             placement: "left",
             title: "Special Attack:",
             content:
-              "A powerful attack that does double damage, does not get counter attacked, and does not use up a turn"
+              "A powerful attack that does massive damage, does not get counter attacked, and does not use up a turn"
           })
           .popover("show");
       },
@@ -845,7 +845,7 @@ $(window).on("load", function() {
     }, 500);
 
     // Player damages enemy
-    enemy.HP -= (player.AP + player.AP * player.EXP) * 2;
+    enemy.HP -= player.AP + player.AP * 0.75;
     // Update enemy HP
     HPBarUpdate(enemy);
     if (enemy.HP <= 0) {
@@ -895,6 +895,6 @@ $(window).on("load", function() {
 
   // Function Calls
   reset();
-  // soundMusic.play();
+  soundMusic.play();
   mouseoverStats();
 });
