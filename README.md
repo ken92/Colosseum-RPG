@@ -2,6 +2,8 @@
 
 Choose your Gladiator and fight to the roar of the crowd!
 
+[Click Here to Play!](https://paullnh.github.io/Colosseum-RPG/)
+
 ### Instructions
 
 * Inspect the gladiators stats by mousing over them
